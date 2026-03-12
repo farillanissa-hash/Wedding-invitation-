@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Undangan Pernikahan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Preview Link -->
+  <meta property="og:title" content="Undangan Pernikahan Alifa & Udi">
+  <meta property="og:description" content="Kami mengundang Anda untuk hadir di hari bahagia kami.">
+  <meta property="og:image" content="https://YOUR-NETLIFY-SITE.netlify.app/thumb.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://YOUR-NETLIFY-SITE.netlify.app">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #000;
+    }
+
+    /* Wrapper 9:16 */
+    .wrapper {
+      width: 100%;
+      max-width: 420px;          /* lebar HP */
+      aspect-ratio: 9 / 16;     /* rasio 9:16 */
+      margin: auto;
+      position: relative;
+      background: url("cover.jpg") no-repeat center center;
+      background-size: cover;
+    }
+
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;   /* konten di bawah */
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .guest-name {
+      font-size: 20px;
+      margin-bottom: 24px;
+    }
+
+    .btn-open {
+      padding: 16px 40px;
+      font-size: 18px;
+      border-radius: 50px;
+      border: none;
+      background: #4b2e1e;
+      color: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,.4);
+      transition: 0.3s;
+    }
+
+    .btn-open:hover {
+      transform: scale(1.05);
+      background: #3a2317;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <div class="overlay">
+
+      <div class="guest-name" id="guestName">
+        Kepada Yth. Tamu Undangan
+      </div>
+
+      <button class="btn-open" onclick="openInvitation()">
+        Buka Undangan
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Musik lokal -->
+  <audio id="bgMusic" src="music.mp3" preload="auto" loop></audio>
+
+  <script>
+    // Ambil nama tamu dari URL ?to=
+    const params = new URLSearchParams(window.location.search);
+    const guest = params.get("to");
+
+    if (guest) {
+      document.getElementById("guestName").innerText =
+        "Kepada Yth. " + decodeURIComponent(guest.replace(/\+/g, " "));
+    }
+
+    function openInvitation() {
+      const music = document.getElementById("bgMusic");
+      music.play().catch(err => console.log("Autoplay blocked"));
+
+      const invitationUrl = "https://jodohnih-wedding-invitation.my.canva.site/alifaudi";
+      window.open(invitationUrl, "_blank");
+    }
+  </script>
+
+</body>
+</html>
